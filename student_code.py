@@ -29,13 +29,7 @@ def is_valid(board, spot, value):
 
 
 def recur_backtrack(sudoku):
-    pass
-
-
-def sudoku_backtracking(sudoku):
-    variables.counter = 0
-    # put your code here
-
+    variables.counter += 1
     if is_board_full(sudoku):
         return True
     else:
@@ -43,10 +37,16 @@ def sudoku_backtracking(sudoku):
             for v in range(1, 10):
                 if is_valid(sudoku, spot, v):
                     sudoku[spot[0]][spot[1]] = v
-                    if sudoku_backtracking(sudoku):
+                    if recur_backtrack(sudoku):
                         return True
                     sudoku[spot[0]][spot[1]] = 0  # remove from board
             return False
+
+
+def sudoku_backtracking(sudoku):
+    variables.counter = 0
+    # put your code here
+    recur_backtrack(sudoku)
 
     return variables.counter
 
